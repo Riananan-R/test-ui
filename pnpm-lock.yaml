@@ -17,6 +17,12 @@ importers:
       '@test-ui/examples':
         specifier: workspace:^
         version: link:examples
+      '@test-ui/theme-chalk':
+        specifier: workspace:^
+        version: link:packages/theme-chalk
+      '@test-ui/utils':
+        specifier: workspace:^
+        version: link:packages/utils
       highlight.js:
         specifier: ^11.10.0
         version: 11.10.0

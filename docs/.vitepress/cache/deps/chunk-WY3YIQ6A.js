@@ -2,9 +2,9 @@ import {
   __commonJS
 } from "./chunk-5WRI5ZAA.js";
 
-// ../node_modules/.pnpm/highlight.js@11.10.0/node_modules/highlight.js/lib/core.js
+// node_modules/.pnpm/highlight.js@11.10.0/node_modules/highlight.js/lib/core.js
 var require_core = __commonJS({
-  "../node_modules/.pnpm/highlight.js@11.10.0/node_modules/highlight.js/lib/core.js"(exports, module) {
+  "node_modules/.pnpm/highlight.js@11.10.0/node_modules/highlight.js/lib/core.js"(exports, module) {
     function deepFreeze(obj) {
       if (obj instanceof Map) {
         obj.clear = obj.delete = obj.set = function() {
@@ -1542,4 +1542,4 @@ var require_core = __commonJS({
 export {
   require_core
 };
-//# sourceMappingURL=chunk-R7LQ4HQV.js.map
+//# sourceMappingURL=chunk-WY3YIQ6A.js.map
