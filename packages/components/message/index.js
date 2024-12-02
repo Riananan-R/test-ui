@@ -25,7 +25,10 @@ const destoryMessageElement = (element) => {
 
 export const TMessage = (config) => {
   const VNode = h(Message, {
-    ...config
+    ...config,
+    onClose(element) {
+      destoryMessageElement(element);
+    },
   });
   const container = document.createElement("div");
   container.setAttribute("class", "t-message-container");
