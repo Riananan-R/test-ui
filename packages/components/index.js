@@ -1,4 +1,5 @@
 import * as components from "./components";
+import "@test-ui/theme-chalk/index.less"
 
 const FUNCTION_COMP = ["TMessage"];
 
