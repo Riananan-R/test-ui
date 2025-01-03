@@ -74,6 +74,31 @@
     <h3>Message time</h3>
     <t-button type="success" @click="handleMessage('success', true, 1000)">1s</t-button>
     <t-button type="success" @click="handleMessage('success', true, 5000)">5s</t-button>
+    <!-- tree -->
+    <h2>树</h2>
+    <h3>Tree</h3>
+    <h3>基础树</h3>
+    <t-tree :data="JSON.parse(JSON.stringify(treeData))" node-key="id" />
+    <h3>默认展开</h3>
+    <t-tree :data="JSON.parse(JSON.stringify(treeData))" node-key="id" :default-expand-all="true" />
+    <h3>可选择</h3>
+    <t-tree
+      :data="JSON.parse(JSON.stringify(treeData))"
+      node-key="id"
+      :showCheckbox="true"
+      :default-expand-all="true"
+      @handleClickNode="handleClickNode"
+    />
+    <h3>获取选中节点/设置选中节点</h3>
+    <t-button type="primary" @click="getCheckedNodes">获取选中的key</t-button>
+    <t-button type="primary" @click="setCheckedNodes">设置选中的key</t-button>
+    <t-tree
+      ref="treeRef"
+      :data="JSON.parse(JSON.stringify(treeData))"
+      node-key="id"
+      :showCheckbox="true"
+      @handleClickNode="handleClickNode"
+    />
   </div>
 </template>
 
@@ -82,6 +107,81 @@ import { ref } from "vue";
 import { TMessage } from "@test-ui/components";
 
 const loading = ref(true);
+const treeRef = ref(null);
+const treeData = [
+  {
+    id: "1",
+    label: "Level one 1",
+    children: [
+      {
+        id: "1-1",
+        label: "Level two 1-1",
+        children: [
+          {
+            id: "1-1-1",
+            label: "Level three 1-1-1",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "2",
+    label: "Level one 2",
+    children: [
+      {
+        id: "2-1",
+        label: "Level two 2-1",
+        children: [
+          {
+            id: "2-1-1",
+            label: "Level three 2-1-1",
+          },
+        ],
+      },
+      {
+        id: "2-2",
+        label: "Level two 2-2",
+        children: [
+          {
+            id: "2-2-1",
+            label: "Level three 2-2-1",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "3",
+    label: "Level one 3",
+    children: [
+      {
+        id: "3-1",
+        label: "Level two 3-1",
+        children: [
+          {
+            id: "3-1-1",
+            label: "Level three 3-1-1",
+          },
+        ],
+      },
+      {
+        id: "3-2",
+        label: "Level two 3-2",
+        children: [
+          {
+            id: "3-2-1",
+            label: "Level three 3-2-1",
+          },
+        ],
+      },
+      {
+        id: "3-3",
+        label: "Level two 3-3",
+      },
+    ],
+  },
+];
 
 setTimeout(() => {
   loading.value = false;
@@ -94,6 +194,19 @@ const handleMessage = (type, showClose, time) => {
     showClose,
     duration: time,
   });
+};
+
+const handleClickNode = (node) => {
+  console.log(node);
+};
+
+const getCheckedNodes = () => {
+  const keys = treeRef.value?.getCheckedNodes();
+  console.log("keys: ", keys);
+};
+
+const setCheckedNodes = () => {
+  treeRef.value?.setCheckedNodes(["1-1", "3-3"]);
 };
 </script>
 

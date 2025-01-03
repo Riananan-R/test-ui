@@ -6,8 +6,7 @@ const FUNCTION_COMP = ["TMessage"];
 export default {
   install(app) {
     Object.entries(components).forEach(([key, value]) => {
-      if (!FUNCTION_COMP.includes(key))
-        app.component(key, value)
+      if (!FUNCTION_COMP.includes(key)) app.component(key, value)
     });
   }
 }
