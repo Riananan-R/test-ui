@@ -99,6 +99,14 @@
       :showCheckbox="true"
       @handleClickNode="handleClickNode"
     />
+    <h2>步骤条 Steps</h2>
+    <h3>基础使用</h3>
+    <t-steps :active="active">
+      <t-step title="第一步" description="打开微信扫一扫" />
+      <t-step title="第二步" description="添加好友" />
+      <t-step title="第三步" description="选择我的头像" />
+      <t-step title="第四步" description="转款1000万" />
+    </t-steps>
   </div>
 </template>
 
