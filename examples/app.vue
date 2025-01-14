@@ -101,11 +101,43 @@
     />
     <h2>步骤条 Steps</h2>
     <h3>基础使用</h3>
+    <div style="margin-bottom: 10px">
+      <t-button type="primary" @click="handleNextStep">下一步</t-button> 当前节点{{ active }}
+    </div>
     <t-steps :active="active">
       <t-step title="第一步" description="打开微信扫一扫" />
       <t-step title="第二步" description="添加好友" />
       <t-step title="第三步" description="选择我的头像" />
       <t-step title="第四步" description="转款1000万" />
+    </t-steps>
+    <h3>居中的步骤条</h3>
+    <t-steps :active="active" align="center">
+      <t-step title="第一步" description="打开微信扫一扫" />
+      <t-step title="第二步" description="添加好友" />
+      <t-step title="第三步" description="选择我的头像" />
+      <t-step title="第四步" description="转款1000万" />
+    </t-steps>
+    <h3>自定义图标1</h3>
+    <t-steps :active="active">
+      <t-step title="起床" icon="notification" />
+      <t-step title="炒股" icon="data-view" />
+      <t-step title="加仓" icon="good" />
+      <t-step title="亏大了" icon="cry" />
+    </t-steps>
+    <h3>自定义图标2</h3>
+    <t-steps :active="active" align="center">
+      <t-step title="起床">
+        <template #icon> &#127774; </template>
+      </t-step>
+      <t-step title="又亏了">
+        <template #icon> &#128201;</template>
+      </t-step>
+      <t-step title="继续加仓">
+        <template #icon> + </template>
+      </t-step>
+      <t-step title="亏成狗">
+        <template #icon> &#128021; </template>
+      </t-step>
     </t-steps>
   </div>
 </template>
@@ -116,6 +148,7 @@ import { TMessage } from "@test-ui/components";
 
 const loading = ref(true);
 const treeRef = ref(null);
+const active = ref(0);
 const treeData = [
   {
     id: "1",
@@ -215,6 +248,13 @@ const getCheckedNodes = () => {
 
 const setCheckedNodes = () => {
   treeRef.value?.setCheckedNodes(["1-1", "3-3"]);
+};
+
+const handleNextStep = () => {
+  active.value += 1;
+  if (active.value > 4) {
+    active.value = 0;
+  }
 };
 </script>
 

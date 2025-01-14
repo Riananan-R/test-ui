@@ -10,5 +10,9 @@ export const StepProps = {
   index: {
     type: Number,
     default: 0
-  }
+  },
+  icon: {
+    type: String,
+    default: "",
+  },
 }
