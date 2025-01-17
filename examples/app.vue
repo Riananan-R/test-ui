@@ -139,6 +139,11 @@
         <template #icon> &#128021; </template>
       </t-step>
     </t-steps>
+    <h2>分页Pagination</h2>
+    <h3>基础使用</h3>
+    <t-pagination :total="100" v-model:current-page="currentPage1" />
+    <h3>跳转功能</h3>
+    <t-pagination :total="300" v-model:current-page="currentPage2" :showJump="true" />
   </div>
 </template>
 
@@ -223,6 +228,8 @@ const treeData = [
     ],
   },
 ];
+const currentPage1 = ref(1);
+const currentPage2 = ref(6);
 
 setTimeout(() => {
   loading.value = false;
