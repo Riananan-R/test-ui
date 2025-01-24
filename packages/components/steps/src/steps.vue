@@ -22,7 +22,9 @@ onMounted(() => {
 
 const getStepUids = () => {
   const instance = getCurrentInstance();
-  const defaultSlot = instance.subTree.children.find((t) => t.key === "_default");
+  const defaultSlot = instance.subTree.children.find(
+    (t) => t.key === "_default"
+  );
   if (defaultSlot) {
     stepsUids.value = defaultSlot.children
       .filter((vnode) => vnode.type.name === "t-step")

@@ -62,25 +62,43 @@
     <!-- message -->
     <h2>消息</h2>
     <h3>Message</h3>
-    <t-button type="success" @click="handleMessage('success')">success</t-button>
+    <t-button type="success" @click="handleMessage('success')"
+      >success</t-button
+    >
     <t-button type="info" @click="handleMessage('info')">info</t-button>
-    <t-button type="warning" @click="handleMessage('warning')">warning</t-button>
+    <t-button type="warning" @click="handleMessage('warning')"
+      >warning</t-button
+    >
     <t-button type="danger" @click="handleMessage('error')">danger</t-button>
     <h3>Message close</h3>
-    <t-button type="success" @click="handleMessage('success', true)">success</t-button>
+    <t-button type="success" @click="handleMessage('success', true)"
+      >success</t-button
+    >
     <t-button type="info" @click="handleMessage('info', true)">info</t-button>
-    <t-button type="warning" @click="handleMessage('warning', true)">warning</t-button>
-    <t-button type="danger" @click="handleMessage('error', true)">danger</t-button>
+    <t-button type="warning" @click="handleMessage('warning', true)"
+      >warning</t-button
+    >
+    <t-button type="danger" @click="handleMessage('error', true)"
+      >danger</t-button
+    >
     <h3>Message time</h3>
-    <t-button type="success" @click="handleMessage('success', true, 1000)">1s</t-button>
-    <t-button type="success" @click="handleMessage('success', true, 5000)">5s</t-button>
+    <t-button type="success" @click="handleMessage('success', true, 1000)"
+      >1s</t-button
+    >
+    <t-button type="success" @click="handleMessage('success', true, 5000)"
+      >5s</t-button
+    >
     <!-- tree -->
     <h2>树</h2>
     <h3>Tree</h3>
     <h3>基础树</h3>
     <t-tree :data="JSON.parse(JSON.stringify(treeData))" node-key="id" />
     <h3>默认展开</h3>
-    <t-tree :data="JSON.parse(JSON.stringify(treeData))" node-key="id" :default-expand-all="true" />
+    <t-tree
+      :data="JSON.parse(JSON.stringify(treeData))"
+      node-key="id"
+      :default-expand-all="true"
+    />
     <h3>可选择</h3>
     <t-tree
       :data="JSON.parse(JSON.stringify(treeData))"
@@ -102,7 +120,8 @@
     <h2>步骤条 Steps</h2>
     <h3>基础使用</h3>
     <div style="margin-bottom: 10px">
-      <t-button type="primary" @click="handleNextStep">下一步</t-button> 当前节点{{ active }}
+      <t-button type="primary" @click="handleNextStep">下一步</t-button>
+      当前节点{{ active }}
     </div>
     <t-steps :active="active">
       <t-step title="第一步" description="打开微信扫一扫" />
@@ -143,93 +162,52 @@
     <h3>基础使用</h3>
     <t-pagination :total="100" v-model:current-page="currentPage1" />
     <h3>跳转功能</h3>
-    <t-pagination :total="300" v-model:current-page="currentPage2" :showJump="true" />
+    <t-pagination
+      :total="300"
+      v-model:current-page="currentPage2"
+      :showJump="true"
+    />
+    <h2>表格 Table</h2>
+    <h3>基础使用</h3>
+    <t-table :column-data="columnData" :table-data="tableData" />
+    <h3>带斑马纹表格</h3>
+    <t-table :column-data="columnData" :table-data="tableData" stripe />
+    <h3>边框</h3>
+    <t-table :column-data="columnData" :table-data="tableData" border />
+    <h3>自定义列</h3>
+    <t-table :column-data="columnData" :table-data="tableData">
+      <template #address="{ scoped, $index }">
+        这是第{{ $index }}行数据，内容是{{ scoped }}
+      </template>
+    </t-table>
+    <h3>固定表头</h3>
+    <t-table
+      :column-data="columnData"
+      :table-data="bigTableData"
+      height="260"
+      border
+    >
+    </t-table>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { TMessage } from "@test-ui/components";
+import { treeData, columnData, tableData } from "./lib";
 
 const loading = ref(true);
 const treeRef = ref(null);
 const active = ref(0);
-const treeData = [
-  {
-    id: "1",
-    label: "Level one 1",
-    children: [
-      {
-        id: "1-1",
-        label: "Level two 1-1",
-        children: [
-          {
-            id: "1-1-1",
-            label: "Level three 1-1-1",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "2",
-    label: "Level one 2",
-    children: [
-      {
-        id: "2-1",
-        label: "Level two 2-1",
-        children: [
-          {
-            id: "2-1-1",
-            label: "Level three 2-1-1",
-          },
-        ],
-      },
-      {
-        id: "2-2",
-        label: "Level two 2-2",
-        children: [
-          {
-            id: "2-2-1",
-            label: "Level three 2-2-1",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "3",
-    label: "Level one 3",
-    children: [
-      {
-        id: "3-1",
-        label: "Level two 3-1",
-        children: [
-          {
-            id: "3-1-1",
-            label: "Level three 3-1-1",
-          },
-        ],
-      },
-      {
-        id: "3-2",
-        label: "Level two 3-2",
-        children: [
-          {
-            id: "3-2-1",
-            label: "Level three 3-2-1",
-          },
-        ],
-      },
-      {
-        id: "3-3",
-        label: "Level two 3-3",
-      },
-    ],
-  },
-];
 const currentPage1 = ref(1);
 const currentPage2 = ref(6);
+const bigTableData = [...Array(50).keys()].map((i) => {
+  return {
+    name: `张三${i}`,
+    date: 18 + i,
+    address: `北京市海淀区${i}号`,
+  };
+});
 
 setTimeout(() => {
   loading.value = false;
