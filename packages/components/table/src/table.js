@@ -16,6 +16,6 @@ export const TableProps = {
     default: false
   },
   height: {
-    type: Number
+    type: Number,
   }
 }

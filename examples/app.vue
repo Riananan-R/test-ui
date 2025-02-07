@@ -184,9 +184,15 @@
     <t-table
       :column-data="columnData"
       :table-data="bigTableData"
-      height="260"
+      :height="260"
       border
     >
+    </t-table>
+    <h3>列对齐</h3>
+    <t-table :column-data="columnData2" :table-data="tableData" stripe border>
+      <template #name="{ scoped, $index }">
+        <div style="width: 50px; height: 20px; background-color: pink"></div>
+      </template>
     </t-table>
   </div>
 </template>
@@ -194,7 +200,7 @@
 <script setup>
 import { ref } from "vue";
 import { TMessage } from "@test-ui/components";
-import { treeData, columnData, tableData } from "./lib";
+import { treeData, columnData, columnData2, tableData } from "./lib";
 
 const loading = ref(true);
 const treeRef = ref(null);

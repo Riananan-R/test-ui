@@ -81,7 +81,24 @@ export const columnData = [
   },
   {
     key: 'name',
-    label: 'Name'
+    label: 'Name',
+  },
+  {
+    key: 'address',
+    label: 'Address'
+  },
+]
+
+export const columnData2 = [
+  {
+    key: 'date',
+    label: 'Date',
+    width: "120",
+  },
+  {
+    key: 'name',
+    label: 'Name',
+    align: "center",
   },
   {
     key: 'address',
