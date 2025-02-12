@@ -7,7 +7,8 @@
   .t-table__tbody {
     width: 100%;
     border-spacing: 0;
-    border-collapse: collapse;
+    // border-collapse: collapse;
+    table-layout: fixed;
   }
   .t-table__thead tr > th,
   .t-table__tbody tr > td {
@@ -15,10 +16,13 @@
     text-align: left;
   }
   .t-table__tbody tr {
-    border-bottom: 1px solid var(--t-border-color);
-    &:hover {
+    // border-bottom: 1px solid var(--t-border-color);
+    &:hover td {
       background-color: var(--t-hover-color);
     }
+  }
+  .t-table__tbody td {
+    border-bottom: 1px solid var(--t-border-color);
   }
   .t-table__tbody--stripe {
     background-color: #f8f8f8;
@@ -29,6 +33,10 @@
   .t-table__tbody .cell {
     display: flex;
     flex-wrap: wrap;
+  }
+
+  .t-table__thead-wrapper::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -53,6 +61,7 @@
   }
   .t-table__tbody-wrapper::-webkit-scrollbar-track {
     border-left: 1px solid var(--t-border-color);
+    border-top: 1px solid var(--t-border-color);
   }
 
   .t-table__tbody-wrapper {
@@ -74,4 +83,50 @@
     background-color: #ddd;
     border-radius: 4px;
   }
+}
+
+.t-table__fixed-column {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-color: #fff;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: -1px;
+    width: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    box-shadow: none;
+    touch-action: none;
+    pointer-events: none;
+  }
+  &.t-table__fixed-column.t-table__fixed-column--left.t-table__fixed-column--last {
+    &:before {
+      box-shadow: inset 10px 0 10px -10px rgba(0, 0, 0, 0.15);
+      right: -10px;
+    }
+  }
+  &.t-table__fixed-column.t-table__fixed-column--right.t-table__fixed-column--first {
+    right: 0;
+    &:before {
+      left: -10px;
+      box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+.t-table__thead .t-table__fixed-column.t-table__fixed-column--right {
+  right: 8px;
+}
+
+.t-table__scroll-start
+  .t-table__fixed-column.t-table__fixed-column--left:before {
+  box-shadow: none !important;
+}
+
+.t-table__scroll-end
+  .t-table__fixed-column.t-table__fixed-column--right:before {
+  box-shadow: none !important;
 }

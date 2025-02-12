@@ -194,13 +194,28 @@
         <div style="width: 50px; height: 20px; background-color: pink"></div>
       </template>
     </t-table>
+    <h3>列固定</h3>
+    <t-table
+      :column-data="columnData3"
+      :table-data="bigTableData2"
+      stripe
+      :height="260"
+      border
+      style="width: 860px"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { TMessage } from "@test-ui/components";
-import { treeData, columnData, columnData2, tableData } from "./lib";
+import {
+  treeData,
+  columnData,
+  columnData2,
+  columnData3,
+  tableData,
+} from "./lib";
 
 const loading = ref(true);
 const treeRef = ref(null);
@@ -212,6 +227,18 @@ const bigTableData = [...Array(50).keys()].map((i) => {
     name: `张三${i}`,
     date: 18 + i,
     address: `北京市海淀区${i}号`,
+  };
+});
+
+const bigTableData2 = [...Array(50).keys()].map((i) => {
+  return {
+    date: 0 + i,
+    name: `Tom${i}`,
+    state: "California",
+    city: "Los Angeles",
+    address: `No. ${i}, Grove St, Los Angeles`,
+    zip: "CA 90036",
+    tag: "Office",
   };
 });
 

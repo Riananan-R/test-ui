@@ -106,6 +106,45 @@ export const columnData2 = [
   },
 ]
 
+export const columnData3 = [
+  {
+    key: 'zip',
+    label: 'Zip',
+    fixed: 'right'
+  },
+  {
+    key: 'name',
+    label: 'Name',
+    width: "220",
+    fixed: 'left'
+  },
+  {
+    key: 'state',
+    label: 'State',
+  },
+  {
+    key: 'date',
+    label: 'Date',
+    width: "120",
+    fixed: 'left'
+  },
+  {
+    key: 'city',
+    label: 'City',
+    width: "520",
+  },
+  {
+    key: 'address',
+    label: 'Address',
+    width: "820",
+  },
+  {
+    key: "tag",
+    label: "Tag",
+    fixed: "right",
+  },
+]
+
 export const tableData = [
   {
     date: '2016-05-03',
@@ -128,3 +167,4 @@ export const tableData = [
     address: 'No. 189, Grove St, Los Angeles',
   },
 ]
+
