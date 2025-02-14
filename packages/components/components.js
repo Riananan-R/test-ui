@@ -5,3 +5,5 @@ export { TSteps } from "./steps";
 export { TStep } from "./step";
 export { TPagination } from "./pagination";
 export { TTable } from "./table";
+export { TCollapse } from './collapse';
+export { TCollapseItem } from './collapse-item'

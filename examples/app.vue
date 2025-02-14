@@ -203,6 +203,34 @@
       border
       style="width: 860px"
     />
+    <h2>折叠面板 Collapse</h2>
+    <h3>基础使用</h3>
+    {{ activeNames }}
+    <t-collapse v-model="activeNames">
+      <t-collapse-item title="Consistency" name="1">
+        <div>
+          Consistent with real life: in line with the process and logic of real
+          life, and comply with languages and habits that the users are used to;
+        </div>
+      </t-collapse-item>
+      <t-collapse-item title="Feedback" name="2">
+        <div>
+          Operation feedback: enable the users to clearly perceive their
+          operations by style updates and interactive effects;
+        </div>
+      </t-collapse-item>
+      <t-collapse-item title="Efficiency" name="3">
+        <div>
+          Simplify the process: keep operating process simple and intuitive;
+        </div>
+      </t-collapse-item>
+      <t-collapse-item title="Controllability" name="4">
+        <div>
+          Decision making: giving advices about operations is acceptable, but do
+          not make decisions for the users;
+        </div>
+      </t-collapse-item>
+    </t-collapse>
   </div>
 </template>
 
@@ -241,6 +269,7 @@ const bigTableData2 = [...Array(50).keys()].map((i) => {
     tag: "Office",
   };
 });
+const activeNames = ref([]);
 
 setTimeout(() => {
   loading.value = false;
