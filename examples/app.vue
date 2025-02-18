@@ -205,8 +205,7 @@
     />
     <h2>折叠面板 Collapse</h2>
     <h3>基础使用</h3>
-    {{ activeNames }}
-    <t-collapse v-model="activeNames">
+    <t-collapse v-model="activeNames1">
       <t-collapse-item title="Consistency" name="1">
         <div>
           Consistent with real life: in line with the process and logic of real
@@ -214,6 +213,69 @@
         </div>
       </t-collapse-item>
       <t-collapse-item title="Feedback" name="2">
+        <div>
+          Operation feedback: enable the users to clearly perceive their
+          operations by style updates and interactive effects;
+        </div>
+      </t-collapse-item>
+      <t-collapse-item title="Efficiency" name="3">
+        <div>
+          Simplify the process: keep operating process simple and intuitive;
+        </div>
+      </t-collapse-item>
+      <t-collapse-item title="Controllability" name="4">
+        <div>
+          Decision making: giving advices about operations is acceptable, but do
+          not make decisions for the users;
+        </div>
+      </t-collapse-item>
+    </t-collapse>
+    <h3>手风琴效果</h3>
+    <t-collapse v-model="activeNames2" accordion>
+      <t-collapse-item title="Consistency" name="1">
+        <div>
+          Consistent with real life: in line with the process and logic of real
+          life, and comply with languages and habits that the users are used to;
+        </div>
+      </t-collapse-item>
+      <t-collapse-item title="Feedback" name="2">
+        <div>
+          Operation feedback: enable the users to clearly perceive their
+          operations by style updates and interactive effects;
+        </div>
+      </t-collapse-item>
+      <t-collapse-item title="Efficiency" name="3">
+        <div>
+          Simplify the process: keep operating process simple and intuitive;
+        </div>
+      </t-collapse-item>
+      <t-collapse-item title="Controllability" name="4">
+        <div>
+          Decision making: giving advices about operations is acceptable, but do
+          not make decisions for the users;
+        </div>
+      </t-collapse-item>
+    </t-collapse>
+    <h3>自定义面板标题和图标</h3>
+    <t-collapse v-model="activeNames2">
+      <t-collapse-item name="1">
+        <template #title>
+          Consistency
+          <i class="t-icon icon-email" />
+        </template>
+        <div>
+          Consistent with real life: in line with the process and logic of real
+          life, and comply with languages and habits that the users are used to;
+        </div>
+      </t-collapse-item>
+      <t-collapse-item title="Feedback" name="2">
+        <template #icon="{ isActive }">
+          <i
+            :class="`t-icon ${
+              isActive ? 'icon-arrow-down-filling' : 'icon-arrow-right-filling'
+            }`"
+          />
+        </template>
         <div>
           Operation feedback: enable the users to clearly perceive their
           operations by style updates and interactive effects;
@@ -269,7 +331,8 @@ const bigTableData2 = [...Array(50).keys()].map((i) => {
     tag: "Office",
   };
 });
-const activeNames = ref([]);
+const activeNames1 = ref([]);
+const activeNames2 = ref([]);
 
 setTimeout(() => {
   loading.value = false;
