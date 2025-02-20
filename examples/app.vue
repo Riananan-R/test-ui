@@ -293,6 +293,35 @@
         </div>
       </t-collapse-item>
     </t-collapse>
+    <h2>日历 Calendar</h2>
+    <h3>基础使用</h3>
+    <t-calendar />
+    <h3>自定义内容</h3>
+    <t-calendar>
+      <template #date-cell="{ date, dateFormated }">
+        <div>
+          <span>{{ dateFormated }}</span>
+        </div>
+      </template>
+    </t-calendar>
+    <h3>待办示例</h3>
+    <t-calendar class="todo-demo">
+      <template #date-cell="{ date, dateFormated }">
+        <div class="todo-cell">
+          <span>{{ dateFormated }}</span>
+          <ul v-if="todoList[dateFormated]" class="todo_list">
+            <li
+              v-for="item in todoList[dateFormated]"
+              :key="item.title"
+              class="todo_item"
+            >
+              <span>{{ item.time }}</span>
+              <span>{{ item.title }}</span>
+            </li>
+          </ul>
+        </div>
+      </template>
+    </t-calendar>
   </div>
 </template>
 
@@ -333,6 +362,17 @@ const bigTableData2 = [...Array(50).keys()].map((i) => {
 });
 const activeNames1 = ref([]);
 const activeNames2 = ref([]);
+const todoList = {
+  "2025-02-06": [
+    { title: "待办1", time: "09:00" },
+    { title: "待办2", time: "10:00" },
+  ],
+  "2025-02-10": [
+    { title: "炒股", time: "09:00" },
+    { title: "干饭", time: "10:00" },
+    { title: "夜生活开始", time: "10:00" },
+  ],
+};
 
 setTimeout(() => {
   loading.value = false;
@@ -368,4 +408,34 @@ const handleNextStep = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.todo-cell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.todo_list {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.todo_item {
+  margin: 6px 0;
+  padding: 0 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 26px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  list-style: none;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.todo-demo :deep(.t-calendar-table) tbody .t-calendar-day {
+  height: 120px;
+}
+</style>

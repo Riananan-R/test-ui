@@ -1,0 +1,83 @@
+@primary: var(--t-primary);
+.t-calendar {
+  width: 100%;
+  border: 1px solid var(--t-border-color);
+  .t-calendar__header {
+    padding: 0 16px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .t-calendar__button-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #363636;
+    }
+    .t-calendar__button-prev,
+    .t-calendar__button-next {
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      &:hover {
+        background-color: var(--t-hover-color);
+      }
+    }
+  }
+}
+
+.t-calendar-table {
+  width: 100%;
+  table-layout: fixed;
+  thead {
+    width: 100%;
+    color: #757575;
+    th {
+      height: 42px;
+      font-weight: 500;
+      color: #363636;
+      border-bottom: 1px solid var(--t-border-color);
+    }
+  }
+  tbody {
+    td {
+      border-right: 1px solid var(--t-border-color);
+      border-bottom: 1px solid var(--t-border-color);
+      &:nth-last-child(1) {
+        border-right: none;
+      }
+    }
+    tr:nth-last-child(1) td {
+      border-bottom: none;
+    }
+    .t-calendar-day {
+      padding: 10px;
+      height: 80px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.35s;
+      &:hover {
+        background-color: var(--t-hover-color);
+      }
+    }
+    .t-calendar-day-number {
+      text-align: right;
+      height: 100%;
+    }
+    .t-calendar-day__prev,
+    .t-calendar-day__next {
+      color: var(--t-placeholder-color);
+    }
+    .t-calendar-day.t-calendar-day__active {
+      background-color: #d7dbf7;
+      color: var(--t-primary);
+    }
+    .t-calendar-day.t-calendar-day__today {
+      color: var(--t-primary);
+    }
+  }
+}
