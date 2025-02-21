@@ -1,0 +1,19 @@
+@span: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+  21, 22, 23, 24;
+
+.t-col {
+  box-sizing: border-box;
+}
+
+each(@span, {
+  .t-col-@{value} {
+    max-width: calc(@value / 24 * 100%);
+    flex: 0 0 calc(@value / 24 * 100%);
+  }
+});
+
+each(@span, {
+  .t-col-offset-@{value} {
+    margin-left: calc(@value / 24 * 100%);
+  }
+});

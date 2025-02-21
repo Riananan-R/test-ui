@@ -8,3 +8,5 @@ export { TTable } from "./table";
 export { TCollapse } from './collapse';
 export { TCollapseItem } from './collapse-item'
 export { TCalendar } from './calendar'
+export { TRow } from './row'
+export { TCol } from './col'

@@ -322,6 +322,121 @@
         </div>
       </template>
     </t-calendar>
+    <h2>Layout 布局</h2>
+    <h3>基础布局</h3>
+    <t-row>
+      <t-col :span="24">
+        <div class="grid-content ep-bg-purple-dark" />
+      </t-col>
+    </t-row>
+    <t-row>
+      <t-col :span="12">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="12">
+        <div class="grid-content ep-bg-purple-light" />
+      </t-col>
+    </t-row>
+    <t-row>
+      <t-col :span="8">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="8">
+        <div class="grid-content ep-bg-purple-light" />
+      </t-col>
+      <t-col :span="8">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+    </t-row>
+    <t-row>
+      <t-col :span="6">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="6">
+        <div class="grid-content ep-bg-purple-light" />
+      </t-col>
+      <t-col :span="6">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="6">
+        <div class="grid-content ep-bg-purple-light" />
+      </t-col>
+    </t-row>
+    <t-row>
+      <t-col :span="4">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="4">
+        <div class="grid-content ep-bg-purple-light" />
+      </t-col>
+      <t-col :span="4">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="4">
+        <div class="grid-content ep-bg-purple-light" />
+      </t-col>
+      <t-col :span="4">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="4">
+        <div class="grid-content ep-bg-purple-light" />
+      </t-col>
+    </t-row>
+    <t-row>
+      <t-col :span="4">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="6">
+        <div class="grid-content ep-bg-purple-light" />
+      </t-col>
+      <t-col :span="10">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="2">
+        <div class="grid-content ep-bg-purple-light" />
+      </t-col>
+      <t-col :span="2">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+    </t-row>
+    <h3>分栏间隔</h3>
+    <t-row :gutter="16">
+      <t-col :span="4">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="6">
+        <div class="grid-content ep-bg-purple-light" />
+      </t-col>
+      <t-col :span="10">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="2">
+        <div class="grid-content ep-bg-purple-light" />
+      </t-col>
+      <t-col :span="2">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+    </t-row>
+    <h3>列偏移</h3>
+    <t-row :gutter="200">
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+      <t-col :span="6" :offset="6">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+    </t-row>
+    <!-- <t-row :gutter="16">
+      <t-col :span="6" :offset="6">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="6" :offset="6">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+    </t-row>
+    <t-row :gutter="20">
+      <t-col :span="12" :offset="6">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+    </t-row> -->
   </div>
 </template>
 
@@ -437,5 +552,31 @@ const handleNextStep = () => {
 }
 .todo-demo :deep(.t-calendar-table) tbody .t-calendar-day {
   height: 120px;
+}
+
+.t-row {
+  margin-bottom: 20px;
+}
+
+.t-row:last-child {
+  margin-bottom: 0;
+}
+
+.t-col {
+  border-radius: 4px;
+}
+
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
+.ep-bg-purple-dark {
+  background-color: #99a9bf;
+}
+.ep-bg-purple {
+  background-color: #d3dce6;
+}
+.ep-bg-purple-light {
+  background-color: #e5e9f2;
 }
 </style>
