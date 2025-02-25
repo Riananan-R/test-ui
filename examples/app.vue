@@ -417,14 +417,24 @@
         <div class="grid-content ep-bg-purple" />
       </t-col>
     </t-row>
+    <t-row :gutter="20">
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+      <t-col :span="6">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+      <t-col :span="6">
+        <div class="grid-content ep-bg-purple" />
+      </t-col>
+    </t-row>
     <h3>列偏移</h3>
-    <t-row :gutter="200">
+    <t-row :gutter="20">
       <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
       <t-col :span="6" :offset="6">
         <div class="grid-content ep-bg-purple" />
       </t-col>
     </t-row>
-    <!-- <t-row :gutter="16">
+    <t-row :gutter="20">
       <t-col :span="6" :offset="6">
         <div class="grid-content ep-bg-purple" />
       </t-col>
@@ -436,7 +446,38 @@
       <t-col :span="12" :offset="6">
         <div class="grid-content ep-bg-purple" />
       </t-col>
-    </t-row> -->
+    </t-row>
+    <h3>对齐方式</h3>
+    <t-row class="row-bg">
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple-light" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+    </t-row>
+    <t-row class="row-bg" justify="center">
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple-light" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+    </t-row>
+    <t-row class="row-bg" justify="end">
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple-light" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+    </t-row>
+    <t-row class="row-bg" justify="space-between">
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple-light" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+    </t-row>
+    <t-row class="row-bg" justify="space-around">
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple-light" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+    </t-row>
+    <t-row class="row-bg" justify="space-evenly">
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple-light" /></t-col>
+      <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
+    </t-row>
   </div>
 </template>
 
@@ -578,5 +619,9 @@ const handleNextStep = () => {
 }
 .ep-bg-purple-light {
   background-color: #e5e9f2;
+}
+.row-bg {
+  padding: 10px 0;
+  background-color: #f9fafc;
 }
 </style>
