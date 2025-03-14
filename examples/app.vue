@@ -478,6 +478,13 @@
       <t-col :span="6"><div class="grid-content ep-bg-purple-light" /></t-col>
       <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
     </t-row>
+    <h3>Carousel</h3>
+    <t-carousel height="150px">
+      <t-carousel-item uid="1">1</t-carousel-item>
+      <t-carousel-item uid="2">2</t-carousel-item>
+      <t-carousel-item uid="3">3</t-carousel-item>
+      <t-carousel-item uid="4">4</t-carousel-item>
+    </t-carousel>
   </div>
 </template>
 
@@ -623,5 +630,21 @@ const handleNextStep = () => {
 .row-bg {
   padding: 10px 0;
   background-color: #f9fafc;
+}
+
+.t-carousel-item {
+  color: #475669;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0;
+  text-align: center;
+}
+
+.t-carousel-item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.t-carousel-item:nth-child(2n + 1) {
+  background-color: #d3dce6;
 }
 </style>
