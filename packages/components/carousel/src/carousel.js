@@ -5,27 +5,11 @@ export const CarouselProps = {
   },
   autoplay: {
     type: Boolean,
-    default: true
+    default: true,
   },
   interval: {
     type: Number,
-    default: 3000
-  },
-  loop: {
-    type: Boolean,
-    default: true
-  },
-  initialIndex: {
-    type: Number,
-    default: 0
-  },
-  trigger: {
-    type: String,
-    default: 'hover'
-  },
-  indicatorPosition: {
-    type: String,
-    default: 'bottom'
+    default: 3000,
   },
   arrow: {
     type: String,

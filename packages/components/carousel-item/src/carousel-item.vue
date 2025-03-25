@@ -1,19 +1,26 @@
 <template>
-  <!-- v-show="isActive" -->
-  <div
-    class="t-carousel-item"
-    :class="{
-      'is-active': isActive,
-      't-carousel-item--card': isCard,
-      't-carousel-item--vertical': isVertical,
-    }"
-  >
-    <slot></slot>
-  </div>
+  <Transition :name="transitionName" v-show="currentIndex === activeIndex">
+    <div
+      class="t-carousel-item"
+      :class="{
+        'is-active': currentIndex === activeIndex,
+      }"
+    >
+      <slot></slot>
+    </div>
+  </Transition>
 </template>
 
 <script setup>
-import { ref, inject, computed, onMounted, onBeforeUnmount } from "vue";
+import {
+  ref,
+  inject,
+  computed,
+  onMounted,
+  onBeforeUnmount,
+  nextTick,
+  watch,
+} from "vue";
 import { CarouselItemProps } from "./carousel-item";
 
 defineOptions({
@@ -23,32 +30,31 @@ defineOptions({
 const props = defineProps(CarouselItemProps);
 
 const uid = ref(Symbol("carousel-item"));
+const transitionName = ref("");
 
-// 注入来自父组件的数据和方法
 const carousel = inject("carousel");
-console.log("carousel: ", carousel);
-const { activeIndex, items, direction, addItem, removeItem } = carousel;
 
-// 计算属性
-const isActive = computed(() => {
-  console.log(
-    "activeIndex.value == items.value.indexOf(uid)12312: ",
-    activeIndex.value,
-    items.value.indexOf(uid)
-  );
-  return activeIndex.value == items.value.indexOf(uid.value);
+const { activeIndex, items, addItem, removeItem, loopDirection } = carousel;
+
+const currentIndex = computed(() => {
+  return items.value.indexOf(uid.value);
 });
 
-const isVertical = computed(() => {
-  return direction === "vertical";
-});
-
-// 生命周期钩子
 onMounted(() => {
   addItem(uid.value);
+  nextTick(() => {
+    transitionName.value = "carousel-next";
+  });
 });
 
 onBeforeUnmount(() => {
   removeItem(uid.value);
 });
+
+watch(
+  () => loopDirection.value,
+  (newVal) => {
+    transitionName.value = `carousel-${newVal}`;
+  }
+);
 </script>

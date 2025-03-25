@@ -1,57 +1,41 @@
 <template>
   <div
     class="t-carousel"
-    :class="{
-      't-carousel--vertical': props.direction === 'vertical',
-      't-carousel--horizontal': props.direction === 'horizontal',
-    }"
     :style="{ height: props.height }"
-    @mouseenter="handleMouseEnter"
-    @mouseleave="handleMouseLeave"
+    @mouseenter="handleMouseEvent('enter')"
+    @mouseleave="handleMouseEvent('leave')"
   >
-    {{ activeIndex }}
-    <div class="t-carousel__container" :style="containerStyle">
+    <div class="t-carousel__container">
       <slot></slot>
     </div>
-
-    <div
-      v-if="props.arrow !== 'never'"
-      :class="['t-carousel__arrow', `t-carousel__arrow--${props.arrow}`]"
+    <button
+      class="t-carousel__arrow t-carousel__arrow-left"
+      @click="play('prev')"
     >
-      <button class="t-carousel__button t-carousel__button--prev" @click="prev">
-        <i class="t-icon icon-arrow-left"></i>
-      </button>
-      <button class="t-carousel__button t-carousel__button--next" @click="next">
-        <i class="t-icon icon-arrow-right"></i>
-      </button>
-    </div>
-
-    <div
-      v-if="props.indicatorPosition !== 'none'"
-      :class="[
-        't-carousel__indicators',
-        `t-carousel__indicators--${props.indicatorPosition}`,
-        {
-          't-carousel__indicators--outside':
-            props.indicatorPosition === 'outside',
-        },
-      ]"
+      <i class="t-icon icon-arrow-left-bold"></i>
+    </button>
+    <button
+      class="t-carousel__arrow t-carousel__arrow-right"
+      @click="play('next')"
     >
-      <button
-        v-for="(item, index) in items"
-        :key="index"
+      <i class="t-icon icon-arrow-right-bold"></i>
+    </button>
+    <ul class="t-carousel__indicators">
+      <li
+        v-for="(_, index) in items"
+        :key="`indicators_${index}`"
         :class="[
           't-carousel__indicator',
           { 'is-active': index === activeIndex },
         ]"
-        @click="setActiveItem(index)"
-      ></button>
-    </div>
+        @click="activeIndex = index"
+      ></li>
+    </ul>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, provide } from "vue";
+import { ref, provide, onMounted, onUnmounted } from "vue";
 import { CarouselProps } from "./carousel";
 
 defineOptions({
@@ -60,30 +44,12 @@ defineOptions({
 
 const props = defineProps(CarouselProps);
 
-// 内部状态
-const activeIndex = ref(props.initialIndex);
 const items = ref([]);
-const timer = ref(null);
+const activeIndex = ref(0);
+const loopDirection = ref("next");
+let timer = null;
 
-setTimeout(() => {
-  console.log("🚀 ~ items:", items);
-}, 2000);
-
-// 计算属性
-const containerStyle = computed(() => {
-  // const transform =
-  //   props.direction === "vertical"
-  //     ? `translateY(-${activeIndex.value * 100}%)`
-  //     : `translateX(-${activeIndex.value * 100}%)`;
-  return {
-    // transform,
-    transition: "transform .3s ease-in-out",
-  };
-});
-
-// 方法
 const addItem = (item) => {
-  console.log("@@@@@@@@@@@@@@@@@@@@@", item);
   items.value.push(item);
 };
 
@@ -94,62 +60,50 @@ const removeItem = (uid) => {
   }
 };
 
-const setActiveItem = (index) => {
-  if (index < 0) {
-    activeIndex.value = props.loop ? items.value.length - 1 : 0;
-  } else if (index >= items.value.length) {
-    activeIndex.value = props.loop ? 0 : items.value.length - 1;
+const play = (direction) => {
+  loopDirection.value = direction;
+  if (direction === "prev") {
+    activeIndex.value =
+      activeIndex.value - 1 < 0
+        ? items.value.length - 1
+        : activeIndex.value - 1;
   } else {
-    activeIndex.value = index;
-  }
-  console.log("🚀 ~ setActiveItem ~ index:", index);
-};
-
-const prev = () => {
-  setActiveItem(activeIndex.value - 1);
-};
-
-const next = () => {
-  setActiveItem(activeIndex.value + 1);
-};
-
-const startTimer = () => {
-  if (props.interval <= 0 || !props.autoplay || timer.value) return;
-  timer.value = setInterval(() => {
-    next();
-  }, props.interval);
-};
-
-const stopTimer = () => {
-  if (timer.value) {
-    clearInterval(timer.value);
-    timer.value = null;
+    activeIndex.value =
+      activeIndex.value + 1 > items.value.length - 1
+        ? 0
+        : activeIndex.value + 1;
   }
 };
 
-const handleMouseEnter = () => {
-  stopTimer();
+const handleMouseEvent = (type) => {
+  if (type === "enter") {
+    timer && clearInterval(timer);
+  } else {
+    if (props.autoplay && props.interval > 0) {
+      timer = setInterval(() => {
+        play("next");
+      }, props.interval);
+    }
+  }
 };
 
-const handleMouseLeave = () => {
-  startTimer();
-};
-
-// 生命周期钩子
 onMounted(() => {
-  startTimer();
+  if (props.autoplay && props.interval > 0) {
+    timer = setInterval(() => {
+      play("next");
+    }, props.interval);
+  }
 });
 
-onBeforeUnmount(() => {
-  stopTimer();
+onUnmounted(() => {
+  timer && clearInterval(timer);
 });
 
-// 向子组件提供数据和方法
 provide("carousel", {
   items,
   addItem,
   removeItem,
   activeIndex,
-  direction: props.direction,
+  loopDirection,
 });
 </script>

@@ -1,9 +1,64 @@
 .t-carousel {
+  position: relative;
   width: 500px;
-  height: 200px;
+  overflow: hidden;
   .t-carousel__container {
     width: 100%;
     height: 100%;
+  }
+  .t-carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(31, 45, 61, 0.096);
+    border: none;
+    color: #fff;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    transition: all 0.3s;
+    cursor: pointer;
+    &-left {
+      left: 10px;
+    }
+    &-right {
+      right: 10px;
+    }
+    .t-icon {
+      font-size: 12px;
+    }
+    &:hover {
+      background-color: rgba(31, 45, 61, 0.23);
+    }
+  }
+  .t-carousel__indicators {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0;
+    margin: 0;
+    z-index: 30;
+    display: flex;
+    .t-carousel__indicator {
+      list-style: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(31, 45, 61, 0.096);
+      margin: 0 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      // &.is-active {
+      //   background-color: var(--t-primary);
+      // }
+      // &:hover {
+      //   background-color: var(--t-primary);
+      // }
+    }
   }
 }

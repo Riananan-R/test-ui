@@ -1,5 +1,37 @@
 .t-carousel-item {
   width: 100%;
   height: 100%;
-  flex-shrink: 0;
+  z-index: -1;
+  position: absolute;
+  &.is-active {
+    z-index: 10;
+  }
+}
+.carousel-next-enter-active,
+.carousel-next-leave-active,
+.carousel-prev-enter-active,
+.carousel-prev-leave-active {
+  transition: all 0.35s linear;
+}
+
+.carousel-next-enter-active {
+  transform: translateX(100%);
+}
+.carousel-next-enter-to,
+.carousel-next-leave-active {
+  transform: translateX(0);
+}
+.carousel-next-leave-to {
+  transform: translateX(-100%);
+}
+
+.carousel-prev-enter-active {
+  transform: translateX(-100%);
+}
+.carousel-prev-enter-to,
+.carousel-prev-leave-to {
+  transform: translateX(0);
+}
+.carousel-prev-leave-to {
+  transform: translateX(100%);
 }
