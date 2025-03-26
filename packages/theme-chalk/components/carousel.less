@@ -1,6 +1,6 @@
 .t-carousel {
   position: relative;
-  width: 500px;
+  width: 100%;
   overflow: hidden;
   .t-carousel__container {
     width: 100%;
@@ -53,12 +53,12 @@
       margin: 0 4px;
       cursor: pointer;
       transition: all 0.3s;
-      // &.is-active {
-      //   background-color: var(--t-primary);
-      // }
-      // &:hover {
-      //   background-color: var(--t-primary);
-      // }
+      &.is-active {
+        background-color: var(--t-primary);
+      }
+      &:hover {
+        background-color: var(--t-primary);
+      }
     }
   }
 }

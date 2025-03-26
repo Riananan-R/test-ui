@@ -11,12 +11,26 @@
     <button
       class="t-carousel__arrow t-carousel__arrow-left"
       @click="play('prev')"
+      v-if="props.arrow !== 'never' && items.length > 1"
+      :style="{
+        left:
+          props.arrow === 'always' || (props.arrow !== 'never' && isHovering)
+            ? '10px'
+            : '-50px',
+      }"
     >
       <i class="t-icon icon-arrow-left-bold"></i>
     </button>
     <button
       class="t-carousel__arrow t-carousel__arrow-right"
       @click="play('next')"
+      v-if="props.arrow !== 'never'"
+      :style="{
+        right:
+          props.arrow === 'always' || (props.arrow !== 'never' && isHovering)
+            ? '10px'
+            : '-50px',
+      }"
     >
       <i class="t-icon icon-arrow-right-bold"></i>
     </button>
@@ -47,6 +61,7 @@ const props = defineProps(CarouselProps);
 const items = ref([]);
 const activeIndex = ref(0);
 const loopDirection = ref("next");
+const isHovering = ref(false);
 let timer = null;
 
 const addItem = (item) => {
@@ -77,8 +92,10 @@ const play = (direction) => {
 
 const handleMouseEvent = (type) => {
   if (type === "enter") {
+    isHovering.value = true;
     timer && clearInterval(timer);
   } else {
+    isHovering.value = false;
     if (props.autoplay && props.interval > 0) {
       timer = setInterval(() => {
         play("next");

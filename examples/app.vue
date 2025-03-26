@@ -478,8 +478,24 @@
       <t-col :span="6"><div class="grid-content ep-bg-purple-light" /></t-col>
       <t-col :span="6"><div class="grid-content ep-bg-purple" /></t-col>
     </t-row>
-    <h3>Carousel</h3>
-    <t-carousel height="150px">
+    <h2>Carousel</h2>
+    <h3>箭头显示</h3>
+    <h4>always</h4>
+    <t-carousel height="150px" arrow="always">
+      <t-carousel-item uid="1">1</t-carousel-item>
+      <t-carousel-item uid="2">2</t-carousel-item>
+      <t-carousel-item uid="3">3</t-carousel-item>
+      <t-carousel-item uid="4">4</t-carousel-item>
+    </t-carousel>
+    <h4>hover</h4>
+    <t-carousel height="150px" arrow="hover">
+      <t-carousel-item uid="1">1</t-carousel-item>
+      <t-carousel-item uid="2">2</t-carousel-item>
+      <t-carousel-item uid="3">3</t-carousel-item>
+      <t-carousel-item uid="4">4</t-carousel-item>
+    </t-carousel>
+    <h4>never</h4>
+    <t-carousel height="150px" arrow="never">
       <t-carousel-item uid="1">1</t-carousel-item>
       <t-carousel-item uid="2">2</t-carousel-item>
       <t-carousel-item uid="3">3</t-carousel-item>

@@ -1,3 +1,5 @@
+const CAROUSEL_ARROW = ['always', 'hover', 'never']
+
 export const CarouselProps = {
   height: {
     type: String,
@@ -14,11 +16,6 @@ export const CarouselProps = {
   arrow: {
     type: String,
     default: 'hover',
-    validator: (value) => ['always', 'hover', 'never'].includes(value)
+    validator: (value) => CAROUSEL_ARROW.includes(value)
   },
-  direction: {
-    type: String,
-    default: 'horizontal',
-    validator: (value) => ['horizontal', 'vertical'].includes(value)
-  }
 }
